@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable prettier/prettier */
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -11,6 +12,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = app.get(LoggingService);
 
+  app.enableCors({
+    origin: 'http://localhost:3001', // Adjust the origin to match your React frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  });
   process.on('uncaughtException', (error) => {
     logger.error(`Uncaught Exception: ${error}`);
     process.exit(1);

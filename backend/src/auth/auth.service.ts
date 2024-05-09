@@ -20,19 +20,24 @@ export class AuthService {
   logger = new LoggingService()
 
   async signup(username: string, password: string): Promise<string> {
- 
+    console.log(username)
+    console.log(password)
     if (!username || !password || typeof username !== 'string' || typeof password !== 'string') {
         this.logger.error('Invalid credentials')
         return 'invalid'
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = { id: this.users.length + 1, username, password: hashedPassword };
+    console.log(user)
     this.users.push(user);
     return 'successful'
   }
 
   async login(username: string, password: string) {
+    console.log(username)
+    console.log(password)
     const user = this.users.find(u => u.username === username);
+    console.log(user)
     if (!user || !(await bcrypt.compare(password, user.password))) {
       this.logger.error('Invalid credentials')
       return ('Invalid credentials');
