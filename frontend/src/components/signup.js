@@ -17,7 +17,7 @@ const Signup = () => {
         username,
         password,
       });
-      console.log(response.data);
+      // console.log(response.data);
       if (response.status === 201) {
         // Redirect to login page if signup is successful
         navigate('/login');

@@ -17,13 +17,13 @@ const Login = () => {
         username,
         password,
       });
-      console.log('response data', response);
+      // console.log('response data', response);
       if (response.status === 200) {
         // Redirect to login page if signup is successful
         navigate('/home');
       } else {
         // Display error message if status code is not 200
-        console.log('in failed')
+        // console.log('in failed')
         setErrorMessage('Login failed. Please try again.');
       }
     } catch (error) {
